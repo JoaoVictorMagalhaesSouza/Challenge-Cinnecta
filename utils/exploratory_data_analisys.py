@@ -80,7 +80,7 @@ class EDA():
         best_clients = best_clients[best_clients.index != 'Unknown']
         best_clients = best_clients.sort_values(by='InvoiceTotal',ascending=False).head(n_best_customers)
         #Plot
-        plot = px.pie(best_clients,values='InvoiceTotal',names=best_clients.index,
+        plot = px.pie(best_clients,values='InvoiceTotal',names=best_clients.index, hole=.2,
                         title=f'Best {n_best_customers} customers of the store')
         plot.show()
         #Plot
@@ -107,7 +107,7 @@ class EDA():
         auxiliar_dataframe = self.output_data.loc[:,['Quantity','Description']]
         best_products = auxiliar_dataframe.groupby('Description').sum().sort_values(by='Quantity',ascending=False).head(n_best_products)
         plot = px.pie(best_products,values='Quantity',names=best_products.index,
-                        title=f'Best {n_best_products} customers of the store',hole=.3)
+                        title=f'Best {n_best_products} products of the store',hole=.2)
         plot.show()
         
         #Plot
@@ -183,3 +183,15 @@ class EDA():
         '''
         auxiliar_dataframe = self.output_data.loc[:,['Quantity','UnitPrice','Country']]
         more_invoices = auxiliar_dataframe.loc[:,['Quantity','Country']].groupby('Country').sum().sort_values(by='Quantity',ascending=False)
+        
+        #Plot
+        plot = px.bar(more_invoices,x=more_invoices.index,y='Quantity',
+                    labels={'Quantity':'Units Sold',
+                            },
+                    title=f'Contry comparison'
+        
+        )
+        plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+                  marker_line_width=1.5, opacity=0.6)
+        plot.show()
+    

@@ -20,4 +20,6 @@ eda.question_1b()
 #%% 5) Question 1-c)
 eda.question_1c()
 #%% 6) Question 1-d)
+eda.question_1d()
 
+# %%
