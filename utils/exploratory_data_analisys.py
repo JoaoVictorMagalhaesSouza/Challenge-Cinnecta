@@ -80,22 +80,22 @@ class EDA():
         best_clients = best_clients[best_clients.index != 'Unknown']
         best_clients = best_clients.sort_values(by='InvoiceTotal',ascending=False).head(n_best_customers)
         #Plot
-        # sns.set_theme(style="whitegrid")
-        # plot = sns.barplot(data=best_clients,x=best_clients.index,y='InvoiceTotal',order=best_clients.index)
-        # plot.set_xticklabels(plot.get_xticklabels(),rotation = -60)
-        # plot.set(title=f'Best {n_best_customers} clients of the store',xlabel='Customer', ylabel='Total Purchased')
-        # plot
-        #Plot
-        plot = px.bar(best_clients,x=best_clients.index,y='InvoiceTotal',
-                    labels={'InvoiceTotal':'Total Purchased',
-                            'CustomerID':'Customer'},
-                    title=f'Best {n_best_customers} customers of the store'
-        
-        )
-        plot.update_xaxes(type='category')
-        plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
-                  marker_line_width=1.5, opacity=0.6)
+        plot = px.pie(best_clients,values='InvoiceTotal',names=best_clients.index,
+                        title=f'Best {n_best_customers} customers of the store')
         plot.show()
+        #Plot
+        # plot = px.bar(best_clients,x=best_clients.index,y='InvoiceTotal',
+        #             labels={'InvoiceTotal':'Total Purchased',
+        #                     'CustomerID':'Customer'},
+        #             title=f'Best {n_best_customers} customers of the store'
+        
+        # )
+        # plot.update_xaxes(type='category')
+        # plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+        #           marker_line_width=1.5, opacity=0.6)
+        # plot.show()
+
+        
 
     def question_1b(self,n_best_products = 10):
         '''
@@ -106,16 +106,20 @@ class EDA():
         '''
         auxiliar_dataframe = self.output_data.loc[:,['Quantity','Description']]
         best_products = auxiliar_dataframe.groupby('Description').sum().sort_values(by='Quantity',ascending=False).head(n_best_products)
-        #Plot
-        plot = px.bar(best_products,x=best_products.index,y='Quantity',
-                    labels={'Quantity':'Units Sold',
-                            'Description':'Product'},
-                    title=f'Best {n_best_products} products of the store'
-        
-        )
-        plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
-                  marker_line_width=1.5, opacity=0.6)
+        plot = px.pie(best_products,values='Quantity',names=best_products.index,
+                        title=f'Best {n_best_products} customers of the store',hole=.3)
         plot.show()
+        
+        #Plot
+        # plot = px.bar(best_products,x=best_products.index,y='Quantity',
+        #             labels={'Quantity':'Units Sold',
+        #                     'Description':'Product'},
+        #             title=f'Best {n_best_products} products of the store'
+        
+        # )
+        # plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+        #           marker_line_width=1.5, opacity=0.6)
+        # plot.show()
     
     def question_1c(self):
        #First we go adapt the date column
@@ -172,3 +176,10 @@ class EDA():
                     title=f'Top 3 produtos diários'
         )
         plot.show() 
+
+    def question_1d(self):
+        '''
+            Country with more invoices
+        '''
+        auxiliar_dataframe = self.output_data.loc[:,['Quantity','UnitPrice','Country']]
+        more_invoices = auxiliar_dataframe.loc[:,['Quantity','Country']].groupby('Country').sum().sort_values(by='Quantity',ascending=False)
