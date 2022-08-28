@@ -43,12 +43,29 @@ a['Description'] = le1.inverse_transform(a['Description'])
 a['CustomerID'] = le2.inverse_transform(a['CustomerID'])
 a['Country'] = le3.inverse_transform(a['Country'])
 #%%
+#Grupo 0
+analise_0 = a[a['Group']==0]
+all_customers = len(final_data['CustomerID'].value_counts())
+#customers_cake = len(analise_0['CustomerID'][analise_0['Description'].str.contains('CAKE')].value_counts())
+customers_cake = len(final_data['CustomerID'][(final_data['Description'].str.contains('CAKE',na=False)) & (final_data['Quantity']>0)].value_counts())
+print(f'{(customers_cake/all_customers)*100}% customers are interested in CAKE products.')
+
+#%%
 #Grupo 1:
 analise_1 = a[a['Group']==1]
 all_customers = len(final_data['CustomerID'].value_counts())
 #customers_bag = len(analise_1['CustomerID'][analise_1['Description'].str.contains('BAG')].value_counts())
 customers_bag = len(final_data['CustomerID'][(final_data['Description'].str.contains('BAG',na=False)) & (final_data['Quantity']>0)].value_counts())
-print(f'{(customers_bag/all_customers)*100}% unique customers are interested in BAGs.')
+print(f'{(customers_bag/all_customers)*100}% customers are interested in BAGs products.')
+
+#%%
+#Grupo 2:
+analise_2 = a[a['Group']==2]
+all_customers = len(final_data['CustomerID'].value_counts())
+#customers_clock = len(analise_2['CustomerID'][analise_2['Description'].str.contains('CLOCK')].value_counts())
+customers_clock = len(final_data['CustomerID'][(final_data['Description'].str.contains('CLOCK',na=False)) & (final_data['Quantity']>0)].value_counts())
+print(f'{(customers_clock/all_customers)*100}% customers are interested in CLOCK products.')
+
 #%% 3) Question 1-a)
 eda.question_1a()
 #%% 4) Question 1-b)
