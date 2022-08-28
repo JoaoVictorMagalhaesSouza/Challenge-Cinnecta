@@ -65,3 +65,21 @@ A segunda análise explora qual o produto mais consumido por cada país:
 <br>
 ![Screenshot](figures/1d_by_country.png)
 <br>
+
+## Questão 2
+Na tentativa de segmentar as transações buscando possíveis clientes com aquisições semelhantes, logo pensei em utilizar um modelo de aprendizado não supervisionado denominado KMeans. Mesmo com poucas features de entrada que possam me dizer sobre o Cliente, senti que podeira conseguir clusters que me mostrassem algum insight útil. Dessa forma, construi um modelo que iria agrupar os dados em 3 grupos (como pedido no enunciado) e, após agrupado, eu poderia observar características desses grupos e expandir essa análise para o conjunto de dados como um todo para ver se tal análise era válida ou não:
+<br>
+![Screenshot](figures/kmeans.png)
+<br>
+O gráfico acima mostra os grupos criados pelo KMeans: podemos ver que Clientes possuem compras (Description está encodado) e o KMeans conseguiu criar relações interessantes que consegui explorar e direi posteriormente.
+
+### <strong>Grupo 0 - Cake Customers</strong>
+Analisando os clientes do Grupo 0 e suas transações, pude observar diversas transações ligadas a produtos relacionados a palavra CAKE (bolo). Investigando no conjunto de dados após o tratamento, vi que 61% dos consumidores estão interessados em produtos relacionados ao segmento de bolos. Logo, esse segmento seria a minha primeira indicação ao Marketing.
+
+### <strong>Grupo 1 - Bag Customers</strong>
+Observando os Clientes do Grupo 1, bem como as suas respectivas compras, notei que uma ampla gama de clientes <strong>distintos</strong> tinha interesse em produtos relacionados à BAGs (bolsas). Então, para ver se esse interesse era generalizável, fui olhar em todos os dados (não somente do Grupo 0) e ver quantos clientes tinham interesse pelo segmento de BAGs e vi que 58% dos compradores tinham interesse neste segmento. Portanto, outra sugestão ao Marketing seria no segmento de bolsas.
+
+### <strong>Grupo 2 - Clock Customers</strong>
+Por fim, o último segmento encontrado foi para consumidores interssados em relógios e derivados (CLOCK). Temos que 21% dos clientes estão interessados neste segmento, fechando a lista da minha indicação ao time de Marketing.
+
+<strong>Observação Importante:</strong> No arquivo "data_intelligence.py" que dediquei para fazer essa análise não será encontrado a minha investigação detalhada sobre cada grupo, visto que esse processo foi bem empírico/experimental.

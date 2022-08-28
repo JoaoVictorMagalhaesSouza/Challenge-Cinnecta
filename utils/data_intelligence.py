@@ -27,8 +27,8 @@ class DataIntelligence():
         
         auxiliar_dataframe['Group'] = kmeans.labels_
         #View the clusters
-        sns.scatterplot(x=auxiliar_dataframe['CustomerID'],y=auxiliar_dataframe['Description'],hue=auxiliar_dataframe['Group'])
-        
+        fig = sns.scatterplot(x=auxiliar_dataframe['CustomerID'],y=auxiliar_dataframe['Description'],hue=auxiliar_dataframe['Group'])
+        fig.figure.savefig('figures/kmeans.png')
         auxiliar_dataframe['Description'] = le1.inverse_transform(auxiliar_dataframe['Description'])
         auxiliar_dataframe['CustomerID'] = le2.inverse_transform(auxiliar_dataframe['CustomerID'])
         auxiliar_dataframe['Country'] = le3.inverse_transform(auxiliar_dataframe['Country'])
