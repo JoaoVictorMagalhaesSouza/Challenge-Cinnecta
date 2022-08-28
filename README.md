@@ -82,4 +82,4 @@ Observando os Clientes do Grupo 1, bem como as suas respectivas compras, notei q
 ### <strong>Grupo 2 - Clock Customers</strong>
 Por fim, o último segmento encontrado foi para consumidores interssados em relógios e derivados (CLOCK). Temos que 21% dos clientes estão interessados neste segmento, fechando a lista da minha indicação ao time de Marketing.
 
-<strong>Observação Importante:</strong> No arquivo "data_intelligence.py" que dediquei para fazer essa análise não será encontrado a minha investigação detalhada sobre cada grupo, visto que esse processo foi bem empírico/experimental.
+<strong>Observações Importantes:</strong> No arquivo "data_intelligence.py" que dediquei para fazer essa análise não será encontrado a minha investigação detalhada sobre cada grupo, visto que esse processo foi bem empírico/experimental. Além disso, destaco que o modelo KMeans trabalhou apenas com as features CustomerID, Description e Country. Para essa análise, os resultados foram extremamente satisfatórios visto que, em tese, "só sei o que o cliente comprou e de onde comprou". Geralmente esses modelos funcionam melhor com mais variáveis preditoras.
