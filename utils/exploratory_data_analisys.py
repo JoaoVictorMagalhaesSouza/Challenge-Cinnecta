@@ -1,6 +1,3 @@
-from itertools import product
-import seaborn as sns
-import matplotlib as plt
 import plotly.express as px
 import pandas as pd
 from copy import deepcopy
@@ -63,7 +60,7 @@ class EDA():
     def question_1a(self,n_best_customers = 10):
         '''
             Input: 
-                n_best_customers: the number of customers that will be viewed
+                n_best_customers: the number of best customers that will be viewed
             My objetive:
                 => How to define the best clients ?
                     1) Which brought the most money (Quantity x UnitPrice)
@@ -82,21 +79,11 @@ class EDA():
         #Plot
         plot = px.pie(best_clients,values='InvoiceTotal',names=best_clients.index, hole=.2,
                         title=f'Best {n_best_customers} customers of the store')
+        
+        plot.update_traces(textinfo='value')
         plot.show()
-        #Plot
-        # plot = px.bar(best_clients,x=best_clients.index,y='InvoiceTotal',
-        #             labels={'InvoiceTotal':'Total Purchased',
-        #                     'CustomerID':'Customer'},
-        #             title=f'Best {n_best_customers} customers of the store'
+        plot.write_image('figures/1a.png')
         
-        # )
-        # plot.update_xaxes(type='category')
-        # plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
-        #           marker_line_width=1.5, opacity=0.6)
-        # plot.show()
-
-        
-
     def question_1b(self,n_best_products = 10):
         '''
             My objetive:
@@ -108,18 +95,9 @@ class EDA():
         best_products = auxiliar_dataframe.groupby('Description').sum().sort_values(by='Quantity',ascending=False).head(n_best_products)
         plot = px.pie(best_products,values='Quantity',names=best_products.index,
                         title=f'Best {n_best_products} products of the store',hole=.2)
+        plot.update_traces(textinfo='value')
         plot.show()
-        
-        #Plot
-        # plot = px.bar(best_products,x=best_products.index,y='Quantity',
-        #             labels={'Quantity':'Units Sold',
-        #                     'Description':'Product'},
-        #             title=f'Best {n_best_products} products of the store'
-        
-        # )
-        # plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
-        #           marker_line_width=1.5, opacity=0.6)
-        # plot.show()
+        plot.write_image('figures/1b.png')
     
     def question_1c(self):
        #First we go adapt the date column
@@ -141,7 +119,9 @@ class EDA():
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
         plot.update_xaxes(categoryorder='array',categoryarray=volume.index.values)
+        plot.update_traces(textinfo='value')
         plot.show()
+        plot.write_image('figures/1c_volumes.png')
         '''
             Faturamento
         '''
@@ -160,7 +140,9 @@ class EDA():
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
         plot.update_xaxes(categoryorder='array',categoryarray=invoicing.index.values)
+        plot.update_traces(textinfo='value')
         plot.show()
+        plot.write_image('figures/1c_invoice.png')
 
         '''
             Products
@@ -175,7 +157,9 @@ class EDA():
                             'InvoiceDate':'Date'},
                     title=f'The 3 best selling products each day'
         )
+        plot.update_traces(textinfo='value')
         plot.show() 
+        plot.write_image('figures/1c_products.png')
 
     def question_1d(self):
         '''
@@ -193,7 +177,9 @@ class EDA():
         )
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
+        plot.update_traces(textinfo='value')
         plot.show()
+        plot.write_image('figures/1d_general.png')
 
         '''
             The most sold product in each country
@@ -208,4 +194,6 @@ class EDA():
                             'Country':'Country'},
                     title=f'The most sold product in each country'
         )
+        plot.update_traces(textinfo='value')
         plot.show() 
+        plot.write_image('figures/1d_by_country.png')
