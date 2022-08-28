@@ -1,5 +1,13 @@
 # Desafio Técnico - Cinnecta
 A seguir, está documentado todo o pipeline para a resolução do desafio técnico proposto para a vaga de Data Engineer, da Cinnecta, realizado pelo candidato João Victor Magalhães Souza.
+## Sumário
+- [Exploratory Data Analisys (EDA) e Data Treatment](#exploratory-data-analisys-eda-e-data-treatment)
+- [Questão 1](#questão-1)
+  - [a)](#a)
+  - [b)](#b)
+  - [c)](#c)
+  - [d)](#d)
+- [Questão 2](#questão-2)
 
 
 ## Exploratory Data Analisys (EDA) e Data Treatment
