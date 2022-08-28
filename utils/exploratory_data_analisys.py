@@ -119,7 +119,7 @@ class EDA():
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
         plot.update_xaxes(categoryorder='array',categoryarray=volume.index.values)
-        plot.update_traces(textinfo='value')
+        
         plot.show()
         plot.write_image('figures/1c_volumes.png')
         '''
@@ -140,7 +140,7 @@ class EDA():
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
         plot.update_xaxes(categoryorder='array',categoryarray=invoicing.index.values)
-        plot.update_traces(textinfo='value')
+        
         plot.show()
         plot.write_image('figures/1c_invoice.png')
 
@@ -151,13 +151,14 @@ class EDA():
         products = products.groupby(['InvoiceDate','Description']).sum()
         top_3_products_per_day = products.sort_index(ascending=[1,0]).groupby(level=0, as_index=False).apply(lambda x: x.sort_values(by='Quantity',ascending=False).head(3) if len(x) >= 3 else x.head(0)).reset_index(level=0, drop=True)
         top_3_products_per_day = top_3_products_per_day.reset_index()
+        
         #Plot
         plot = px.bar(top_3_products_per_day, x="InvoiceDate", y="Quantity", color="Description",
                         labels={'Quantity':'Sold amount',
                             'InvoiceDate':'Date'},
                     title=f'The 3 best selling products each day'
         )
-        plot.update_traces(textinfo='value')
+        
         plot.show() 
         plot.write_image('figures/1c_products.png')
 
@@ -177,7 +178,7 @@ class EDA():
         )
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
-        plot.update_traces(textinfo='value')
+        
         plot.show()
         plot.write_image('figures/1d_general.png')
 
@@ -194,6 +195,6 @@ class EDA():
                             'Country':'Country'},
                     title=f'The most sold product in each country'
         )
-        plot.update_traces(textinfo='value')
+        
         plot.show() 
         plot.write_image('figures/1d_by_country.png')

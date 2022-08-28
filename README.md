@@ -46,3 +46,22 @@ Em termos de faturamento, o pensamento é similar ao anterior mas agora ao invé
 ![Screenshot](figures/1c_invoice.png)
 <br>
 É notório que o período após Set/2011 apresenta uma consistência de faturamento em maior nível que os períodos anteriores, que pode ser possivelmente explicado pelas promoções de fim de ano, como dito anteriormente.
+
+#### <strong>Produtos Vendidos</strong>
+Nesta análise, busquei quais foram os três produtos mais vendidos em cada dia. Para tal, calculei o total vendido por cada produto em um dia e peguei apenas os três mais vendidos. Abaixo mostrarei apenas alguns dias visto a grande quantidade de dias e a dificuldade de visualizar o gráfico utilizado para essa análise em larga escala:
+<br>
+![Screenshot](figures/1c_products.png)
+<br>
+Para uma eventual análise mais detalhada, recomendo a utilização do Jupyter no VSCode para analisar os gráficos plotly interativos. 
+
+### <strong>d)</strong>
+Na análise dos países, realizei duas abordagens: a primeira delas mostra um comparativo geral dos países em termos do número total de unidades compradas:
+<br>
+![Screenshot](figures/1d_general.png)
+<br>
+Podemos observar claramente que o Reino Unido detém, tranquilamente, o maior número de clientes da referida loja, seguido da Holanda, Irlanda e Alemanha. Já o país com o menor número de transações é a Arábia Saudita.
+
+A segunda análise explora qual o produto mais consumido por cada país:
+<br>
+![Screenshot](figures/1d_by_country.png)
+<br>
