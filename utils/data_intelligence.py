@@ -12,7 +12,7 @@ class DataIntelligence():
         '''
             My objetive is create auxiliar_dataframe 3 clusters (Customers) from the input_data
         '''
-        auxiliar_dataframe = self.data.loc[:,['Description','CustomerID']]
+        auxiliar_dataframe = self.data.loc[:,['Description','CustomerID','Country']]
         le1 = LabelEncoder()
         auxiliar_dataframe['Description'] = auxiliar_dataframe['Description'].astype('str')
         auxiliar_dataframe['Description'] = le1.fit_transform(auxiliar_dataframe['Description'])
@@ -23,7 +23,7 @@ class DataIntelligence():
         auxiliar_dataframe['Country'] = auxiliar_dataframe['Country'].astype('str')
         auxiliar_dataframe['Country'] = le3.fit_transform(auxiliar_dataframe['Country'])
 
-        kmeans = KMeans(n_clusters=5,random_state=42).fit(auxiliar_dataframe)
+        kmeans = KMeans(n_clusters=3,random_state=42).fit(auxiliar_dataframe)
         
         auxiliar_dataframe['Group'] = kmeans.labels_
         #View the clusters
