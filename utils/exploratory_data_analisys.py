@@ -173,15 +173,15 @@ class EDA():
         plot = px.bar(top_3_products_per_day, x="InvoiceDate", y="Quantity", color="Description",
                         labels={'Quantity':'Sold amount',
                             'InvoiceDate':'Date'},
-                    title=f'Top 3 produtos diários'
+                    title=f'The 3 best selling products each day'
         )
         plot.show() 
 
     def question_1d(self):
         '''
-            Country with more invoices
+            General analisys: Total invoices in all countries
         '''
-        auxiliar_dataframe = self.output_data.loc[:,['Quantity','UnitPrice','Country']]
+        auxiliar_dataframe = self.output_data.loc[:,['Quantity','Description','UnitPrice','Country']]
         more_invoices = auxiliar_dataframe.loc[:,['Quantity','Country']].groupby('Country').sum().sort_values(by='Quantity',ascending=False)
         
         #Plot
@@ -194,4 +194,18 @@ class EDA():
         plot.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
                   marker_line_width=1.5, opacity=0.6)
         plot.show()
-    
+
+        '''
+            The most sold product in each country
+        '''
+        products_country = auxiliar_dataframe.loc[:,['Description','Quantity','Country']]
+        products_country = products_country.groupby(['Country','Description']).sum()
+        best_product_country = products_country.sort_index(ascending=[1,0]).groupby(level=0, as_index=False).apply(lambda x: x.sort_values(by='Quantity',ascending=False).head(1) if len(x) >= 1 else x.head(0)).reset_index(level=0, drop=True)
+        best_product_country = best_product_country.reset_index().sort_values(by='Quantity',ascending=False)
+        
+        plot = px.bar(best_product_country, x="Country", y="Quantity", color="Description",
+                        labels={'Quantity':'Sold amount',
+                            'Country':'Country'},
+                    title=f'The most sold product in each country'
+        )
+        plot.show() 
